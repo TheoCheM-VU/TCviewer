@@ -1,0 +1,21 @@
+tcviewer.widgets package
+========================
+
+Submodules
+----------
+
+tcviewer.widgets.periodic\_table module
+---------------------------------------
+
+.. automodule:: tcviewer.widgets.periodic_table
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: tcviewer.widgets
+   :members:
+   :undoc-members:
+   :show-inheritance:

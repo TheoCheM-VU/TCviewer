@@ -1,0 +1,53 @@
+tcviewer.shapes package
+=======================
+
+Submodules
+----------
+
+tcviewer.shapes.atom module
+---------------------------
+
+.. automodule:: tcviewer.shapes.atom
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+tcviewer.shapes.bond module
+---------------------------
+
+.. automodule:: tcviewer.shapes.bond
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+tcviewer.shapes.editable\_shape module
+--------------------------------------
+
+.. automodule:: tcviewer.shapes.editable_shape
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+tcviewer.shapes.geometry module
+-------------------------------
+
+.. automodule:: tcviewer.shapes.geometry
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+tcviewer.shapes.option module
+-----------------------------
+
+.. automodule:: tcviewer.shapes.option
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: tcviewer.shapes
+   :members:
+   :undoc-members:
+   :show-inheritance:

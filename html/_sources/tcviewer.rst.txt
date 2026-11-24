@@ -1,0 +1,62 @@
+tcviewer package
+================
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   tcviewer.shapes
+   tcviewer.widgets
+
+Submodules
+----------
+
+tcviewer.mol\_widget module
+---------------------------
+
+.. automodule:: tcviewer.mol_widget
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+tcviewer.screen module
+----------------------
+
+.. automodule:: tcviewer.screen
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+tcviewer.settings module
+------------------------
+
+.. automodule:: tcviewer.settings
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+tcviewer.settings2 module
+-------------------------
+
+.. automodule:: tcviewer.settings2
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+tcviewer.try module
+-------------------
+
+.. automodule:: tcviewer.try
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: tcviewer
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -15,6 +15,7 @@ from vtk.vtkCommonColor import vtkNamedColors
 from vtk.vtkFiltersSources import vtkConeSource
 from vtk.vtkRenderingCore import vtkTextActor, vtkActor, vtkAssembly, vtkFollower, vtkPolyDataMapper, vtkRenderer, vtkRenderWindow, vtkRenderWindowInteractor, vtkLight, vtkCamera
 from vtk.vtkFiltersSources import vtkLineSource, vtkArcSource, vtkSphereSource, vtkRegularPolygonSource
+from vtk.vtkFiltersHybrid import vtkPolyDataSilhouette
 from vtk.vtkFiltersCore import vtkTubeFilter
 
 from tcviewer import mol_widget
@@ -217,7 +218,14 @@ class MoleculeScene:
         self.atoms[atom] = actors
 
     def draw_single_bond(self, a1, a2, color=None, opacity=1, radius=None):
-        p1, p2 = np.array(a1.coords), np.array(a2.coords)
+        if isinstance(a1, plams.Atom):
+            p1 = np.array(a1.coords)
+        else:
+            p1 = a1
+        if isinstance(a2, plams.Atom):
+            p2 = np.array(a2.coords)
+        else:
+            p2 = a2
         lineSource = vtkLineSource()
         lineSource.SetPoint1(p1)
         lineSource.SetPoint2(p2)
@@ -319,6 +327,19 @@ class MoleculeScene:
         actor.GetProperty().SetSpecular(shininess)
         actor.GetProperty().SetSpecularPower(70)
         actor.GetProperty().SetSpecularColor((0, 0, 0))
+        # actor.GetProperty().LightingOff()
+        if self.parent.parent.settings.get_value('Iso Surface', 'Enable Contour') and self.parent.parent.settings.get_value('Iso Surface', 'Contour Width') > 0:
+            silhouette = vtkPolyDataSilhouette(input_data=mcplus.GetOutput(), camera=self.renderer.active_camera)
+            mapper2 = vtkPolyDataMapper()
+            # mapper2.SetNumberOfPieces(100)
+            silhouette >> mapper2
+
+            actor2 = vtkActor(mapper=mapper2)
+            actor2.property.interpolation = 0
+            actor2.property.color = color
+            # actor2.property.color = [0, 0, 0]
+            actor2.property.line_width = self.parent.parent.settings.get_value('Iso Surface', 'Contour Width')
+
         actor.SetScale(scale)
         actor.PickableOff()
         if isovalue < 0:
@@ -328,6 +349,8 @@ class MoleculeScene:
         actor.SetUserTransform(self.transform)
 
         self.renderer.AddActor(actor)
+        if self.parent.parent.settings.get_value('Iso Surface', 'Enable Contour') and self.parent.parent.settings.get_value('Iso Surface', 'Contour Width') > 0:
+            self.renderer.AddActor(actor2)
 
     def draw_dual_isosurface(self, data, isovalue=None, colorm=(1, 0, 0), colorp=(0, 0, 1), opacity=None, shininess=None):
         if isovalue is None:
@@ -541,7 +564,7 @@ class _HeadlessMoleculeWidget:
         self._base_ren = vtkRenderer()
         self.renWin = vtk.vtkRenderWindow(off_screen_rendering=True)
         self.renWin.AddRenderer(self._base_ren)
-        self.renWin.SetAlphaBitPlanes(True)
+        self.renWin.SetAlphaBitPlanes(False)
         self._base_ren.SetBackground(1, 1, 1)
 
         self.scene = self.new_scene()
@@ -550,8 +573,8 @@ class _HeadlessMoleculeWidget:
         self.scene = MoleculeScene(self)
         return self.scene
 
-    def screenshot(self, path, scale=4):
-        self.scene.screenshot(path, scale=scale)
+    def screenshot(self, path, scale=4, enable_transparency: bool = True):
+        self.scene.screenshot(path, scale=scale, enable_transparency=enable_transparency)
 
     def screenshots(self, paths=None, directory=None, scale=4):
         if paths is None and directory is None:

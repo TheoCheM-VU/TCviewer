@@ -1,0 +1,39 @@
+atom:
+  scale: 0.5
+  quadrant_crossing: [0.5, -0.5]
+  quadrant_width: 0.02
+  quadrants_enabled: true
+  outline_width: 0.02
+  outline_enabled: true
+  opacity: 1
+  ambient: 0.65
+  diffuse: 0.5
+  specular: 0.5
+  specular_power: 5.0
+  color_convention: "cpk"   # names taken from the "atom_colors" directory
+  radius_convention: "covalent"  # names taken from the "atom_radii" directory
+
+bond:
+  radius: 0.1
+  outline_radius: 0.02
+  color: [0, 0, 0]
+  outline_color: [0, 0, 0]
+  outline_enabled: true
+  use_atom_colors: false
+  opacity: 1
+  ambient: 0.65
+  diffuse: 0.5
+  specular: 0.5
+  specular_power: 5.0
+
+isosurface:
+  color: [0, 0, 0]
+  outline_radius: 4
+  outline_color: [0, 0, 0]
+  outline_use_surface_color: true
+  outline_enabled: true
+  opacity: 0.3
+  ambient: 0.65
+  diffuse: 0.5
+  specular: 0.5
+  specular_power: 5.0

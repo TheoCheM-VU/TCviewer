@@ -188,27 +188,27 @@ if has_qt:
 if __name__ == '__main__':
     with Screen(headless=False) as scr:
         ...
-        # with scr.add_molscene() as scene:
-        #     # res = tcutility.results.read('/Users/yumanhordijk/PhD/Projects/RadicalAdditionASMEDA/data/DFT/TS_C_O/PyFrag_OLYP_TZ2P/frag_Substrate')
-            # orbs = pyfmo.orbitals2.objects.Orbitals('/Users/yumanhordijk/Downloads/FragAnal.adf.rkf')
+        with scr.add_molscene() as scene:
+            # res = tcutility.results.read('/Users/yumanhordijk/PhD/Projects/RadicalAdditionASMEDA/data/DFT/TS_C_O/PyFrag_OLYP_TZ2P/frag_Substrate')
+            orbs = pyfmo.orbitals2.objects.Orbitals('/Users/yumanhordijk/Downloads/FragAnal.adf.rkf')
 
-            # cub1 = orbs.sfos['1(SOMO)'].cube_file()
-        #     cub2 = orbs.sfos['2(21A)'].cube_file()
+            cub1 = orbs.sfos['1(SOMO)'].cube_file()
+            cub2 = orbs.sfos['2(21A)'].cube_file()
 
-        #     S = cub1.copy()
-        #     S.values = abs(cub1.values * cub2.values)
-            # mol = cub1.molecule
+            S = cub1.copy()
+            S.values = abs(cub1.values * cub2.values)
+            mol = cub1.molecule
 
-        #     # T = tcutility.geometry.MolTransform(mol)
-        #     # T.center(1)  # center on C1
-        #     # T.align_to_vector(1, 2, [1, 0, 0])  # put C=O bond on x-axis
-        #     # T.align_to_plane(2, 1, 4, [0, 1, 0])  # place the molecule on the xz-plane
-        #     # # T.rotate(x=7 * np.pi / 180)
-        #     # scene.transform = T.to_vtkTransform()
+            # T = tcutility.geometry.MolTransform(mol)
+            # T.center(1)  # center on C1
+            # T.align_to_vector(1, 2, [1, 0, 0])  # put C=O bond on x-axis
+            # T.align_to_plane(2, 1, 4, [0, 1, 0])  # place the molecule on the xz-plane
+            # # T.rotate(x=7 * np.pi / 180)
+            # scene.transform = T.to_vtkTransform()
 
-        #     scene.draw_molecule(cub1.molecule)
-        #     scene.draw_isosurface(S,  0.009, [0, 1, 1])
-        #     # scene.draw_isosurface(cub2, -0.03, [1, .5, 0])
-        #     # scene.draw_isosurface(cub2,  0.03, [0, 1, 1])
+            scene.draw_molecule(cub1.molecule)
+            scene.draw_isosurface(S,  0.009, [0, 1, 1])
+            # scene.draw_isosurface(cub2, -0.03, [1, .5, 0])
+            # scene.draw_isosurface(cub2,  0.03, [0, 1, 1])
 
-        # scr.screenshots(directory='screenshots')
+        scr.screenshots(directory='screenshots')
